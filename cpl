@@ -1,0 +1,21 @@
+def compare_with_500(number):
+    """
+    Функция для сравнения числа с 500.
+    Возвращает True, если число больше 500, и False в противном случае.
+    """
+    return number > 500
+
+# Основная часть программы
+if __name__ == "__main__":
+    try:
+        # Запрашиваем у пользователя ввод числа
+        user_input = float(input("Введите число: "))
+        
+        # Сравниваем число с 500
+        if compare_with_500(user_input):
+            print(f"Число {user_input} больше 500.")
+        else:
+            print(f"Число {user_input} меньше или равно 500.")
+    
+    except ValueError:
+        print("Ошибка: Введите корректное число!")
