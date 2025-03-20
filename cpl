@@ -9,13 +9,23 @@ def compare_with_500(number):
 if __name__ == "__main__":
     try:
         # Запрашиваем у пользователя ввод числа
-        user_input = float(input("Введите число: "))
+        user_input = input("Введите число: ")
+        
+        # Преобразуем введённую строку в число (целое или дробное)
+        try:
+            number = float(user_input)  # Попытка преобразовать в число
+        except ValueError:
+            raise ValueError(f"Ошибка: '{user_input}' не является числом!")  # Выбрасываем собственное исключение
         
         # Сравниваем число с 500
-        if compare_with_500(user_input):
-            print(f"Число {user_input} больше 500.")
+        if compare_with_500(number):
+            print(f"Число {number} больше 500.")
         else:
-            print(f"Число {user_input} меньше или равно 500.")
+            print(f"Число {number} меньше или равно 500.")
     
-    except ValueError:
-        print("Ошибка: Введите корректное число!")
+    except ValueError as ve:
+        # Обрабатываем ошибку ввода данных
+        print(ve)
+    except Exception as e:
+        # Обрабатываем любые другие непредвиденные ошибки
+        print(f"Произошла непредвиденная ошибка: {e}")
