@@ -1,37 +1,29 @@
 def compare_with_500(number):
-    """
-    Функция для сравнения числа с 500.
-    Возвращает True, если число больше 500, и False в противном случае.
-    """
+    print(f"Проверяем число: {number}")  # Отладочное сообщение
     return number > 500
 
-# Основная часть программы
 if __name__ == "__main__":
     while True:
         try:
-            # Запрашиваем у пользователя ввод числа
             user_input = input("Введите число (или 'exit' для выхода): ").strip()
+            print(f"Получен ввод: '{user_input}'")  # Отладочное сообщение
             
-            # Если пользователь ввёл команду для выхода
             if user_input.lower() == 'exit':
                 print("Программа завершена.")
                 break
             
-            # Проверяем, является ли ввод числом
-            if user_input.replace('.', '', 1).isdigit():  # Проверка на целое или дробное число
-                number = float(user_input)  # Преобразуем в число
+            if user_input.replace('.', '', 1).isdigit():
+                number = float(user_input)
+                print(f"Преобразовано в число: {number}")  # Отладочное сообщение
                 
-                # Сравниваем число с 500
                 if compare_with_500(number):
                     print(f"Число {number} больше 500.")
                 else:
                     print(f"Число {number} меньше или равно 500.")
             else:
-                raise ValueError(f"Ошибка: '{user_input}' не является числом!")  # Выбрасываем исключение
+                raise ValueError(f"Ошибка: '{user_input}' не является числом!")
         
         except ValueError as ve:
-            # Обработка ошибки ввода данных
             print(ve)
         except Exception as e:
-            # Обработка любых других непредвиденных ошибок
             print(f"Произошла непредвиденная ошибка: {e}")
