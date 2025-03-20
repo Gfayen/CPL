@@ -7,25 +7,31 @@ def compare_with_500(number):
 
 # Основная часть программы
 if __name__ == "__main__":
-    try:
-        # Запрашиваем у пользователя ввод числа
-        user_input = input("Введите число: ")
-        
-        # Преобразуем введённую строку в число (целое или дробное)
+    while True:
         try:
-            number = float(user_input)  # Попытка преобразовать в число
-        except ValueError:
-            raise ValueError(f"Ошибка: '{user_input}' не является числом!")  # Выбрасываем собственное исключение
+            # Запрашиваем у пользователя ввод числа
+            user_input = input("Введите число (или 'exit' для выхода): ").strip()
+            
+            # Если пользователь ввёл команду для выхода
+            if user_input.lower() == 'exit':
+                print("Программа завершена.")
+                break
+            
+            # Проверяем, является ли ввод числом
+            if user_input.replace('.', '', 1).isdigit():  # Проверка на целое или дробное число
+                number = float(user_input)  # Преобразуем в число
+                
+                # Сравниваем число с 500
+                if compare_with_500(number):
+                    print(f"Число {number} больше 500.")
+                else:
+                    print(f"Число {number} меньше или равно 500.")
+            else:
+                raise ValueError(f"Ошибка: '{user_input}' не является числом!")  # Выбрасываем исключение
         
-        # Сравниваем число с 500
-        if compare_with_500(number):
-            print(f"Число {number} больше 500.")
-        else:
-            print(f"Число {number} меньше или равно 500.")
-    
-    except ValueError as ve:
-        # Обрабатываем ошибку ввода данных
-        print(ve)
-    except Exception as e:
-        # Обрабатываем любые другие непредвиденные ошибки
-        print(f"Произошла непредвиденная ошибка: {e}")
+        except ValueError as ve:
+            # Обработка ошибки ввода данных
+            print(ve)
+        except Exception as e:
+            # Обработка любых других непредвиденных ошибок
+            print(f"Произошла непредвиденная ошибка: {e}")
